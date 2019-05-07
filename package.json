@@ -1,0 +1,24 @@
+{
+  "name": "react-view-lazyload",
+  "version": "0.0.0",
+  "description": "当组件出现在视窗了再去加载它",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chechengyi/react-view-lazyload.git"
+  },
+  "keywords": [
+    "React",
+    "Component",
+    "lazyload"
+  ],
+  "author": "Chechengyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chechengyi/react-view-lazyload/issues"
+  },
+  "homepage": "https://github.com/Chechengyi/react-view-lazyload#readme"
+}
