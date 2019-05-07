@@ -1,13 +1,9 @@
-function test1(){
-  console.log('test1')
-}
+import React from 'react'
 
-function test2(){
-  console.log('test3')
-}
-
-var ccy = 'chechengyi'
-export default {
-  test1,
-  test2
+export default class LazyLoad extends React.Component {
+  render(){
+    return (
+      <div>lazy load</div>
+    )
+  }
 }

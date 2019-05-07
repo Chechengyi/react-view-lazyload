@@ -1,8 +1,6 @@
 'use strict'
 
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -47,8 +45,8 @@ module.exports = {
   // 代码模块路径解析的配置
   resolve: {
     modules: [
-      "node_modules",
-      path.resolve(__dirname, 'src')
+      path.resolve(__dirname, 'lib'),
+      path.resolve(__dirname, 'examples')
     ],
     extensions: [".wasm", ".mjs", ".js", ".json", ".jsx"],
   },
