@@ -1,16 +1,19 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Test1 from '../lib/index'
+import LazyLoad from '../src/index'
+import './index.css'
 
 class App extends React.Component {
 
   componentDidMount(){
-    console.log(Test1)
+    
   }
 
   render(){
     return (
-      <div>react dom </div>
+      <div>
+        <LazyLoad />
+      </div>
     )
   }
 }
