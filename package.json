@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "better-scroll": "^1.15.2",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "react-router-dom": "^5.0.0",
@@ -42,6 +43,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

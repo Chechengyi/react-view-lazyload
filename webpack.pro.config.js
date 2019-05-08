@@ -22,7 +22,7 @@ module.exports = {
       {
         test: /\.jsx?/, // 支持 js 和 jsx
         exclude: [
-          path.resolve(__dirname, 'node_modules'), // src 目录下的才需要经过 babel-loader 处理
+          path.resolve(__dirname, 'node_modules'), // 
         ],
         loader: 'babel-loader',
       },
