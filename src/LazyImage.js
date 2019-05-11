@@ -1,14 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import ReactDom from 'react-dom'
 import { LazyContext } from './context'
 import { addMap } from './observer'
-import ReactDom from 'react-dom'
 
-export default class LazyLoad extends React.Component {
-  
+
+export default class LazyImage extends React.Component {
+
   constructor(props){
     super(props)
     this.state = {
-      visible:false
+      src: this.props.loadImg
     }
   }
 
@@ -26,14 +28,14 @@ export default class LazyLoad extends React.Component {
     if ( this.mode === 'vertical' ) {
       if ( (rect.top >0 && rect.top <= windowH) ) {
         this.setState({
-          visible: true
+          src: this.props.src
         })
         return true
       }
     } else {
       if ( (rect.left >0 && rect.left <= windowW) ) {
         this.setState({
-          visible: true
+          src: this.props.src
         })
         return true
       }
@@ -47,16 +49,13 @@ export default class LazyLoad extends React.Component {
         {contextInfo => {
           this.type = contextInfo.type
           this.mode = contextInfo.mode
-          // return 
-          // this.state.visible? 
-          // this.props.children : <div>占位中</div>
-          if (this.state.visible) {
-            return this.props.children
-          } else {
-            return <div>占位中...</div>
-          }
+          return <img style={this.props.style} src={this.state.src} />
         }}
       </LazyContext.Consumer>
     )
   }
+}
+
+LazyImage.propTypes = {
+  src: PropTypes.string
 }
