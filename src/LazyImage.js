@@ -4,10 +4,9 @@ import ReactDom from 'react-dom'
 import { LazyContext } from './context'
 import { addMap } from './observer'
 
-
 export default class LazyImage extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       src: this.props.loadImg
@@ -15,30 +14,24 @@ export default class LazyImage extends React.Component {
   }
 
   componentDidMount() {
-    addMap(this.type, this)
+    // addMap(this.type, this)
     this.el = ReactDom.findDOMNode(this)
+    this.checkView()
+    if (!this.checkView()) {
+      addMap(this.type, this)
+    }
   }
 
-  checkView = ()=>{
+  checkView = () => {
     var windowH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight // 浏览器高度兼容写法
     var windowW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
     const rect = this.el.getBoundingClientRect()
-    // console.log('浏览器视口的高度', windowH)
-    // console.log('元素距离顶部的距离',rect.top)
-    if ( this.mode === 'vertical' ) {
-      if ( (rect.top >0 && rect.top <= windowH) ) {
-        this.setState({
-          src: this.props.src
-        })
-        return true
-      }
-    } else {
-      if ( (rect.left >0 && rect.left <= windowW) ) {
-        this.setState({
-          src: this.props.src
-        })
-        return true
-      }
+    if ((rect.top >= 0 && rect.top <= windowH) && (rect.left >= 0 && rect.left <= windowW)) {
+      this.setState({
+        src: this.props.src
+      })
+      console.log('....')
+      return true
     }
     return false
   }
@@ -48,8 +41,7 @@ export default class LazyImage extends React.Component {
       <LazyContext.Consumer>
         {contextInfo => {
           this.type = contextInfo.type
-          this.mode = contextInfo.mode
-          return <img style={this.props.style} src={this.state.src} />
+          return <img ref={el=>this.image=el} style={this.props.style} src={this.state.src} />
         }}
       </LazyContext.Consumer>
     )

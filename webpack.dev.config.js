@@ -14,9 +14,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
+    filename: '[name].js',
     publicPath: '/',
-    // libraryTarget: 'umd',
     // libraryExport: "default"
   },
   module: {
@@ -35,7 +34,6 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
               modules: true
             },
           }],

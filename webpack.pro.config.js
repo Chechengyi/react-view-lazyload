@@ -14,8 +14,8 @@ module.exports = {
     path: path.resolve(__dirname, 'lib'),
     filename: '[name].js',
     publicPath: '/',
-    libraryTarget: 'umd',
-    libraryExport: "default"
+    library: 'reactLazyLoad',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
@@ -45,8 +45,9 @@ module.exports = {
   // 代码模块路径解析的配置
   resolve: {
     modules: [
-      path.resolve(__dirname, 'lib'),
-      path.resolve(__dirname, 'examples')
+      "node_modules",
+      path.resolve(__dirname, 'src'),
+      // path.resolve(__dirname, 'examples')
     ],
     extensions: [".wasm", ".mjs", ".js", ".json", ".jsx"],
   },

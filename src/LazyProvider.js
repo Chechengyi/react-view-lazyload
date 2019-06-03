@@ -4,25 +4,42 @@ import throttle from './utils/throttle'
 import { triggerType } from './observer'
 import PropTypes from 'prop-types'
 
+const default_events = ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove']
+
 export default class LazyProvider extends React.Component {
 
   static defaultProps  = {
-    mode: 'vertical'  // inline 水平
+    mode: 'vertical',  // inline 水平
   }
-
+  
   constructor(props){
     super(props)
+    this.state = {
+      events: this.props.events ||default_events
+    }
     this.handleListen = throttle(this.handleListen.bind(this), 300)
+    this.bindEventListener = this.bindEventListener.bind(this)
+    this.removeEventListener = this.removeEventListener.bind(this)
   }
 
   componentDidMount(){
-    document.addEventListener('scroll', this.handleListen)
-    window.addEventListener('resize', this.handleListen)
+    this.bindEventListener()
+  }
+
+  bindEventListener(){
+    this.state.events.forEach( event => {
+      document.addEventListener(event, this.handleListen)
+    });
+  }
+
+  removeEventListener(){
+    this.state.events.forEach( event => {
+      document.removeEventListener(event, this.handleListen)
+    })
   }
 
   componentWillUnmount(){
-    document.removeEventListener('scroll', this.handleListen)
-    window.removeEventListener('resize', this.handleListen)
+    this.removeEventListener()
   }
 
   handleListen(){
@@ -44,5 +61,5 @@ export default class LazyProvider extends React.Component {
 
 LazyProvider.propTypes = {
   type: PropTypes.string,
-  mode: PropTypes.string
+  events: PropTypes.array
 }
